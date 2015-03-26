@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="433.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <effect>
+      <Glow level="0.29" />
+   </effect>
+   <children>
+      <Pane layoutX="29.0" layoutY="60.0" prefHeight="169.0" prefWidth="116.0">
+         <children>
+            <RadioButton layoutY="116.0" mnemonicParsing="false" text="Parallelogram">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Shape" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutY="87.0" mnemonicParsing="false" text="Square" toggleGroup="$Shape" />
+            <RadioButton mnemonicParsing="false" text="Ellipse" toggleGroup="$Shape" />
+            <RadioButton layoutY="29.0" mnemonicParsing="false" text="Circle" toggleGroup="$Shape" />
+            <RadioButton layoutY="58.0" mnemonicParsing="false" text="Rectangle" toggleGroup="$Shape" />
+            <RadioButton layoutY="145.0" mnemonicParsing="false" text="Rhombus" toggleGroup="$Shape" />
+         </children>
+      </Pane>
+      <TextField layoutX="29.0" layoutY="284.0" prefHeight="25.0" prefWidth="80.0" />
+      <TextField layoutX="29.0" layoutY="339.0" prefHeight="25.0" prefWidth="80.0" />
+      <Label layoutX="29.0" layoutY="267.0" text="Width" />
+      <Label layoutX="29.0" layoutY="322.0" text="Height" />
+      <Canvas height="406.0" layoutX="145.0" layoutY="14.0" width="580.0" />
+   </children>
+</AnchorPane>
