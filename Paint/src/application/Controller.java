@@ -52,6 +52,5 @@ public class Controller {
 	
 	@FXML
 	private void canvasOnClick() {
-		
 	}
 }
