@@ -9,29 +9,29 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="433.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="433.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <effect>
       <Glow level="0.29" />
    </effect>
    <children>
-      <Pane layoutX="29.0" layoutY="60.0" prefHeight="169.0" prefWidth="116.0">
+      <Pane layoutX="29.0" layoutY="41.0" prefHeight="207.0" prefWidth="135.0">
          <children>
-            <RadioButton layoutY="116.0" mnemonicParsing="false" text="Parallelogram">
-               <toggleGroup>
-                  <ToggleGroup fx:id="Shape" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton layoutY="87.0" mnemonicParsing="false" text="Square" toggleGroup="$Shape" />
-            <RadioButton mnemonicParsing="false" text="Ellipse" toggleGroup="$Shape" />
-            <RadioButton layoutY="29.0" mnemonicParsing="false" text="Circle" toggleGroup="$Shape" />
-            <RadioButton layoutY="58.0" mnemonicParsing="false" text="Rectangle" toggleGroup="$Shape" />
-            <RadioButton layoutY="145.0" mnemonicParsing="false" text="Rhombus" toggleGroup="$Shape" />
+            <Button fx:id="btnEllipse" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#btnEllipseOnClick" prefHeight="25.0" prefWidth="101.0" text="Ellipse" />
+            <Button fx:id="btnCircle" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnCircleOnClick" prefHeight="25.0" prefWidth="101.0" text="Circle" />
+            <Button fx:id="btnRectangle" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnRectangleOnClick" prefHeight="25.0" prefWidth="101.0" text="Rectangle" />
+            <Button fx:id="btnSquare" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" onAction="#btnSquareOnClick" prefHeight="25.0" prefWidth="101.0" text="Square" />
+            <Button fx:id="btnParallelogram" layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#btnParallelogramOnClick" prefHeight="25.0" prefWidth="101.0" text="Parallelogram" />
+            <Button fx:id="btnRhombus" layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnRhombusOnClick" prefHeight="25.0" prefWidth="101.0" text="Rhombus" />
          </children>
       </Pane>
-      <TextField layoutX="29.0" layoutY="284.0" prefHeight="25.0" prefWidth="80.0" />
-      <TextField layoutX="29.0" layoutY="339.0" prefHeight="25.0" prefWidth="80.0" />
-      <Label layoutX="29.0" layoutY="267.0" text="Width" />
-      <Label layoutX="29.0" layoutY="322.0" text="Height" />
-      <Canvas height="406.0" layoutX="145.0" layoutY="14.0" width="580.0" />
+      <TextField layoutX="46.0" layoutY="265.0" prefHeight="25.0" prefWidth="101.0" />
+      <TextField layoutX="46.0" layoutY="320.0" prefHeight="25.0" prefWidth="101.0" />
+      <Label layoutX="50.0" layoutY="248.0" text="Width" />
+      <Label layoutX="49.0" layoutY="303.0" text="Height" />
+      <TextField layoutX="46.0" layoutY="370.0" prefHeight="25.0" prefWidth="42.0" />
+      <TextField layoutX="105.0" layoutY="370.0" prefHeight="25.0" prefWidth="42.0" />
+      <Label layoutX="48.0" layoutY="353.0" text="X" />
+      <Label layoutX="107.0" layoutY="353.0" text="Y" />
+      <Canvas fx:id="canvas" height="406.0" layoutX="173.0" layoutY="7.0" onMouseClicked="#canvasOnClick" width="580.0" />
    </children>
 </AnchorPane>
