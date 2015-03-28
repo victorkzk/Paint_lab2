@@ -1,5 +1,8 @@
 package application;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -85,18 +88,28 @@ public class Controller {
 	}
 	
 	private int getX() {
-		return Integer.parseInt(txtFieldX.getText());
+		String strX = txtFieldX.getText();
+		return isNumber(strX) ? Integer.parseInt(strX) : 0;
 	}
 	
 	private int getY() {
-		return Integer.parseInt(txtFieldY.getText());
+		String strY = txtFieldY.getText();
+		return isNumber(strY) ? Integer.parseInt(strY) : 0;
 	}
 	
 	private int getWidth() {
-		return Integer.parseInt(txtFieldWidth.getText());
+		String strWidth = txtFieldWidth.getText();
+		return isNumber(strWidth) ? Integer.parseInt(strWidth) : 0;
 	}
 	
 	private int getHeight() {
-		return Integer.parseInt(txtFieldHeight.getText());
+		String strHeight = txtFieldHeight.getText();
+		return isNumber(strHeight) ? Integer.parseInt(strHeight) : 0;
+	}
+	
+	private boolean isNumber(String s) {
+		Pattern numPattern = Pattern.compile("[0-9]+");
+		Matcher numMatcher = numPattern.matcher(s);
+		return numMatcher.matches();
 	}
 }
