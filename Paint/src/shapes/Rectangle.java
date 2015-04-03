@@ -1,12 +1,37 @@
 package shapes;
 
+import shapesDrawers.Drawer;
+import shapesDrawers.RectangleDrawer;
+
 public class Rectangle extends Parallelogram {
 	
-	public Rectangle(int x, int y, int width, int height) {
-		super(x, y, width, height);
+	private boolean isSquare;
+	
+	public Rectangle(boolean isSquare) {
+		super(false);
+		this.isSquare = isSquare;
 	}
 	
-	public Rectangle(int x, int y, int width) {
-		super(x, y, width);
+	@Override
+	public void updateWidth(int width) {
+		this.width = width;
+		if (isSquare)
+			this.height = width;
+	}
+	
+	@Override
+	public void updateHeight(int height) {
+		this.height = height;
+		if (!isSquare)
+			this.height = height;
+	}
+	
+	public boolean isSquare() {
+		return isSquare;
+	}
+
+	@Override
+	public Drawer getDrawer() {
+		return new RectangleDrawer();
 	}
 }

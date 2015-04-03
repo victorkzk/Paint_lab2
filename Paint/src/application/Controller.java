@@ -1,100 +1,101 @@
 package application;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import shapes.Ellipse;
-import shapes.Painter;
-import shapes.Parallelogram;
-import shapes.Rectangle;
+import shapes.Shape;
+import shapesDrawers.Drawer;
 
-public class Controller {
-	@FXML
-	private Button btnEllipse,
-				   btnCircle,
-				   btnRectangle, 
-				   btnSquare, 
-				   btnParallelogram, 
-				   btnRhombus;
+public class Controller implements Initializable{
+	
 	@FXML
 	private TextField txtFieldWidth,
-					  txtFieldHeight,
-					  txtFieldX,
-					  txtFieldY;
+					  txtFieldHeight;
 	@FXML
 	private Canvas canvas;
 	
-	@FXML
-	private void btnEllipseOnClick() {
-		Ellipse ellipse = new Ellipse(getX(), getY(), getWidth(), getHeight());
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.AQUA);
-		Painter.draw(ellipse, gc);
+	ShapeUpdater shapeUpdater = new ShapeUpdater();
+	Shape shape = shapeUpdater.getEllipse();
+	
+	public void initialize(URL url, ResourceBundle resourseBundle) {
+		txtFieldWidth.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+            	updWidthValue();
+            }
+        });
+		
+		txtFieldHeight.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+            	updHeightValue();
+            }
+        });
 	}
 	
 	@FXML
-	private void btnCircleOnClick() {
-		Ellipse ellipse = new Ellipse(getX(), getY(), getWidth());
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.BLUE);
-		Painter.draw(ellipse, gc);
-	}
-	
-	@FXML
-	private void btnRectangleOnClick() {
-		Rectangle rectangle = new Rectangle(getX(), getY(), getWidth(), getHeight());
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.GREEN);
-		Painter.draw(rectangle, gc);
-	}
-	
-	@FXML
-	private void btnSquareOnClick() {
-		Rectangle rectangle = new Rectangle(getX(), getY(), getWidth());
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.GREENYELLOW);
-		Painter.draw(rectangle, gc);
-	}
-	
-	@FXML
-	private void btnParallelogramOnClick() {
-		Parallelogram parallelogram = new Parallelogram(getX(), getY(), getWidth(), getHeight());
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.LIGHTCORAL);
-		Painter.draw(parallelogram, gc);
+	private void rbEllipseClick() {
+		shape = shapeUpdater.getEllipse();
 	}
 
 	@FXML
-	private void btnRhombusOnClick() {
-		Parallelogram parallelogram = new Parallelogram(getX(), getY(), getWidth());
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.CORAL);
-		Painter.draw(parallelogram, gc);
+	private void rbCircleClick() {
+		shape = shapeUpdater.getCircle();
+	}
+	
+	@FXML
+	private void rbRectangleClick() {
+		shape = shapeUpdater.getRectangle();
+	}
+	
+	@FXML
+	private void rbSquareClick() {
+		shape = shapeUpdater.getSquare();
+	}
+	
+	@FXML
+	private void rbParallelogramClick() {
+		shape = shapeUpdater.getParallelogram();
+	}
+	
+	@FXML
+	private void rbRhombusClick() {
+		shape = shapeUpdater.getRhombus();
+	}
+	
+	@FXML
+	private void updWidthValue() {
+		shapeUpdater.updateWidth(getWidth());
+	}
+	
+	@FXML
+	private void updHeightValue() {
+		shapeUpdater.updateHeight(getHeight());
 	}
 	
 	@FXML
 	private void canvasOnClick(MouseEvent mouseEvent) {
 		int posCursorX = (int)(mouseEvent.getSceneX() - canvas.getLayoutX());
 		int posCursorY = (int)(mouseEvent.getSceneY() - canvas.getLayoutY());
-		txtFieldX.setText(String.valueOf(posCursorX));
-		txtFieldY.setText(String.valueOf(posCursorY));
-	}
-	
-	private int getX() {
-		String strX = txtFieldX.getText();
-		return isNumber(strX) ? Integer.parseInt(strX) : 0;
-	}
-	
-	private int getY() {
-		String strY = txtFieldY.getText();
-		return isNumber(strY) ? Integer.parseInt(strY) : 0;
+		shape.setX(posCursorX);
+		shape.setY(posCursorY);
+		//shapeUpdater.updateHeight(50);
+		//shapeUpdater.updateWidth(100);
+		Drawer drawer = shape.getDrawer();
+		GraphicsContext gc = canvas.getGraphicsContext2D();
+		gc.setFill(Color.GREENYELLOW);
+		gc.setLineWidth(2);
+		gc.setStroke(Color.GREEN);
+		drawer.draw(shape, gc);
 	}
 	
 	private int getWidth() {

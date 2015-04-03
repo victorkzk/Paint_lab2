@@ -1,21 +1,32 @@
 package shapes;
 
-public class Ellipse extends Shape {
+import shapesDrawers.Drawer;
+import shapesDrawers.EllipseDrawer;
+
+public class Ellipse extends Shape implements Observer {
 	
 	protected int width, height;
+	protected boolean isCircle;
 	
-	public Ellipse(int x, int y, int width, int height) {
-		super(x, y);
-		this.width = width;
-		this.height = height;
-	}
-	
-	public Ellipse(int x, int y, int width) {
-		super(x, y);
-		this.width = width;
-		this.height = width;
+	public Ellipse(boolean isCircle) {
+		this.isCircle = isCircle; 
 	}
 
+	public void updateWidth(int width) {
+		this.width = width;
+		if (isCircle)
+			this.height = width;
+	}
+	
+	public void updateHeight(int height) {
+		if (!isCircle)
+			this.height = height;
+	}
+	
+	public Drawer getDrawer() {
+		return new EllipseDrawer();
+	}
+	
 	public int getWidth() {
 		return width;
 	}
@@ -24,11 +35,7 @@ public class Ellipse extends Shape {
 		return height;
 	}
 	
-	public int getX() {
-		return x;
-	}
-	
-	public int getY() {
-		return y;
+	public boolean isCircle() {
+		return isCircle;
 	}
 }

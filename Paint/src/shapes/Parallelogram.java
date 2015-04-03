@@ -1,21 +1,33 @@
 package shapes;
 
-public class Parallelogram extends Shape{
+import shapesDrawers.Drawer;
+import shapesDrawers.ParallelogramDrawer;
+
+public class Parallelogram extends Shape implements Observer{
 	
 	protected int width, height;
+	private boolean isRhombus;
 	
-	public Parallelogram(int x, int y, int width, int height) {
-		super(x, y);
-		this.width = width;
-		this.height = height;
-	}
-	
-	public Parallelogram(int x, int y, int width) {
-		super(x, y);
-		this.width = width;
-		this.height = width;
+	public Parallelogram(boolean isRhombus) {
+		this.isRhombus = isRhombus;
 	}
 
+	public Drawer getDrawer() {
+		return new ParallelogramDrawer();
+	}
+	
+	public void updateWidth(int width) {
+		this.width = width;
+		if (isRhombus)
+			this.height = width;
+	}
+	
+	public void updateHeight(int height) {
+		this.height = height;
+		if (!isRhombus)
+			this.height = height;
+	}
+	
 	public int getWidth() {
 		return width;
 	}
@@ -24,11 +36,7 @@ public class Parallelogram extends Shape{
 		return height;
 	}
 	
-	public int getX() {
-		return x;
-	}
-	
-	public int getY() {
-		return y;
+	public boolean isRhombus() {
+		return isRhombus;
 	}
 }
